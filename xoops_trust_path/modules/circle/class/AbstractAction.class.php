@@ -10,8 +10,6 @@ if(!defined('XOOPS_ROOT_PATH'))
     exit;
 }
 
-require_once CIRCLE_TRUST_PATH . '/class/CircleUtils.class.php';
-
 /**
  * Circle_AbstractAction
 **/
@@ -22,8 +20,6 @@ abstract class Circle_AbstractAction
     public /*** Circle_Module ***/ $mModule = null;
 
     public /*** Circle_AssetManager ***/ $mAsset = null;
-
-    public /*** Circle_Utils ***/ $mUtils = null;
 
     public $mAccessController = array();
 
@@ -39,7 +35,6 @@ abstract class Circle_AbstractAction
         $this->mRoot =& XCube_Root::getSingleton();
         $this->mModule =& $this->mRoot->mContext->mModule;
         $this->mAsset =& $this->mModule->mAssetManager;
-        $thos->mUtils =$ new Circle_Utils();
     }
 
     /**
