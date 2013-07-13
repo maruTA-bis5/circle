@@ -1,0 +1,47 @@
+<div class="circle">
+<div class="page-header">
+  <h1><{$smarty.const._MD_CIRCLE_LANG_PEOPLE_EDIT}></h1>
+</div>
+<{if $actionForm->hasError()}>
+  <ul class="alert alert-error">
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+<{/if}>
+<form action="<{xoops_cooluri dirname=$dirname dataname=people action=edit}>" method="post" class="form-horizontal">
+  <fieldset>
+
+  <{xoops_input type=hidden name=people_id value=$actionForm->get('people_id')}>
+
+  <div class="control-group">
+    <label for="title" class="control-labelrequired"><{$smarty.const._MD_CIRCLE_LANG_TITLE}></label>
+    <div class="controls"><{xoops_input type=text name=title value=$actionForm->get('title') class="span4" maxlength=255required}></div>
+  </div>
+  <{if $accessController->getAccessControllerType()!='none'}>
+  <div class="control-group">
+    <label for="category_id" class="control-label required"><{$smarty.const._MD_CIRCLE_LANG_CATEGORY_ID}></label>
+    <div class="controls"><select name="category_id">
+      <{legacy_category_select tree=$accessController->getTree('post') selectedValue=$actionForm->get('category_id')}>
+    </select></div>
+  </div>
+  <{else}>
+  <{xoops_input type="hidden" name="category_id" value="0"}>
+  <{/if}>
+
+
+    <{if $tag_dirname}>
+    <dt><{$smarty.const._TAG}></dt>
+    <dd>
+      <{xoops_input type=text name=tags value=$actionForm->get('tags')}>
+      <{legacy_tag_select tDirname=$tag_dirname tags=$object->mTag}>
+    </dd>
+    <{/if}>
+  <div class="form-actions">
+    <{xoops_token form=$actionForm}>
+    <button type="submit" class="btn btn-primary" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
+    <button class="btn" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>"><{$smarty.const._CANCEL}></button>
+  </div>
+  </fieldset>
+</form>
+</div>
