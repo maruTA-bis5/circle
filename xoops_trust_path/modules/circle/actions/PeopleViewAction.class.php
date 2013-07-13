@@ -72,6 +72,7 @@ class Circle_PeopleViewAction extends Circle_AbstractViewAction
 		$render->setTemplateName($this->mAsset->mDirname . '_people_view.html');
 		$render->setAttribute('object', $this->mObject);
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
+        $render->setAttribute('cat_name', $
 		$render->setAttribute('dataname', self::DATANAME);
 		$render->setAttribute('accessController', $this->mAccessController['main']);
 	}
