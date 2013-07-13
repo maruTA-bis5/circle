@@ -39,7 +39,7 @@ abstract class Circle_AbstractAction
         $this->mRoot =& XCube_Root::getSingleton();
         $this->mModule =& $this->mRoot->mContext->mModule;
         $this->mAsset =& $this->mModule->mAssetManager;
-        $this->mUtils =& new Circle_Utils();
+        $thos->mUtils =$ new Circle_Utils();
     }
 
     /**
