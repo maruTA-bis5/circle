@@ -30,6 +30,11 @@
   <{/if}>
 
 
+  <div class="control-group">
+    <label for="student_id" class="control-labelrequired"><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}></label>
+    <div class="controls"><{xoops_input type=text name=student_id value=$actionForm->get('student_id') class="span4" maxlength=11required}></div>
+  </div>
+
     <{if $tag_dirname}>
     <dt><{$smarty.const._TAG}></dt>
     <dd>

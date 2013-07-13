@@ -44,8 +44,8 @@ class Circle_PeopleEditForm extends XCube_ActionForm
 		//
         $this->mFormProperties['people_id'] = new XCube_IntProperty('people_id');
         $this->mFormProperties['title'] = new XCube_StringProperty('title');
-        $this->mFormProperties['uid'] = new XCube_IntProperty('uid');
         $this->mFormProperties['category_id'] = new XCube_IntProperty('category_id');
+        $this->mFormProperties['student_id'] = new XCube_StringProperty('student_id');
         $this->mFormProperties['posttime'] = new XCube_IntProperty('posttime');
         $this->mFormProperties['tags'] = new XCube_TextProperty('tags');
 
@@ -61,10 +61,14 @@ $this->mFieldProperties['people_id']->addMessage('required', _MD_CIRCLE_ERROR_RE
         $this->mFieldProperties['title']->addMessage('required', _MD_CIRCLE_ERROR_REQUIRED, _MD_CIRCLE_LANG_TITLE);
         $this->mFieldProperties['title']->addMessage('maxlength', _MD_CIRCLE_ERROR_MAXLENGTH, _MD_CIRCLE_LANG_TITLE, '255');
         $this->mFieldProperties['title']->addVar('maxlength', '255');
-        $this->mFieldProperties['uid'] = new XCube_FieldProperty($this);
        $this->mFieldProperties['category_id'] = new XCube_FieldProperty($this);
 $this->mFieldProperties['category_id']->setDependsByArray(array('required'));
 $this->mFieldProperties['category_id']->addMessage('required', _MD_CIRCLE_ERROR_REQUIRED, _MD_CIRCLE_LANG_CATEGORY_ID);
+       $this->mFieldProperties['student_id'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['student_id']->setDependsByArray(array('required','maxlength'));
+        $this->mFieldProperties['student_id']->addMessage('required', _MD_CIRCLE_ERROR_REQUIRED, _MD_CIRCLE_LANG_STUDENT_ID);
+        $this->mFieldProperties['student_id']->addMessage('maxlength', _MD_CIRCLE_ERROR_MAXLENGTH, _MD_CIRCLE_LANG_STUDENT_ID, '11');
+        $this->mFieldProperties['student_id']->addVar('maxlength', '11');
         $this->mFieldProperties['posttime'] = new XCube_FieldProperty($this);
 	}
 
@@ -79,8 +83,8 @@ $this->mFieldProperties['category_id']->addMessage('required', _MD_CIRCLE_ERROR_
 	{
         $this->set('people_id', $obj->get('people_id'));
         $this->set('title', $obj->get('title'));
-        $this->set('uid', $obj->get('uid'));
         $this->set('category_id', $obj->get('category_id'));
+        $this->set('student_id', $obj->get('student_id'));
         $this->set('posttime', $obj->get('posttime'));
       $tags = is_array($obj->mTag) ? implode(' ', $obj->mTag) : null;
         if(count($obj->mTag)>0) $tags = $tags.' ';
@@ -98,6 +102,7 @@ $this->mFieldProperties['category_id']->addMessage('required', _MD_CIRCLE_ERROR_
 	{
         $obj->set('title', $this->get('title'));
         $obj->set('category_id', $this->get('category_id'));
+        $obj->set('student_id', $this->get('student_id'));
         $obj->mTag = explode(' ', trim($this->get('tags')));
 	}
 

@@ -10,10 +10,10 @@
   <dd><{$object->getShow('people_id')}></dd>
   <dt><{$smarty.const._MD_CIRCLE_LANG_TITLE}></dt>
   <dd><{$object->getShow('title')}></dd>
-  <dt><{$smarty.const._MD_CIRCLE_LANG_UID}></dt>
-  <dd><{$object->getShow('uid')|xoops_user:user_name}></dd>
   <dt><{$smarty.const._MD_CIRCLE_LANG_CATEGORY_ID}></dt>
   <dd><{$mainTitle|xoops_escape}></dd>
+  <dt><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}></dt>
+  <dd><{$object->getShow('student_id')}></dd>
   <dt><{$smarty.const._MD_CIRCLE_LANG_POSTTIME}></dt>
   <dd><{$object->getShow('posttime')|xoops_formattimestamp:m}></dd>
 

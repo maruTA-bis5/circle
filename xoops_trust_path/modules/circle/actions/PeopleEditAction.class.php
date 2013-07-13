@@ -81,9 +81,6 @@ class Circle_PeopleEditAction extends Circle_AbstractEditAction
     {
         parent::prepare();
         if($this->mObject->isNew()){
-			if($this->mRoot->mContext->mUser->isInRole('Site.RegisteredUser')){
-				$this->mObject->set('uid', $this->mRoot->mContext->mXoopsUser->get('uid'));
-			}
 			$this->mObject->set('category_id', $this->_getCatId());
         }
 		$this->_setupAccessController('people');

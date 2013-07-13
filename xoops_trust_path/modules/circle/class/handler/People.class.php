@@ -30,8 +30,8 @@ class Circle_PeopleObject extends Legacy_AbstractObject
         parent::__construct();  
         $this->initVar('people_id', XOBJ_DTYPE_INT, '', false);
         $this->initVar('title', XOBJ_DTYPE_STRING, '', false, 255);
-        $this->initVar('uid', XOBJ_DTYPE_INT, '', false);
         $this->initVar('category_id', XOBJ_DTYPE_INT, '', false);
+        $this->initVar('student_id', XOBJ_DTYPE_STRING, '', false, 11);
         $this->initVar('posttime', XOBJ_DTYPE_INT, time(), false);
    }
 

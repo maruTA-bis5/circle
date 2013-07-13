@@ -14,8 +14,8 @@ require_once CIRCLE_TRUST_PATH . '/class/AbstractFilterForm.class.php';
 
 define('CIRCLE_PEOPLE_SORT_KEY_PEOPLE_ID', 1);
 define('CIRCLE_PEOPLE_SORT_KEY_TITLE', 2);
-define('CIRCLE_PEOPLE_SORT_KEY_UID', 3);
-define('CIRCLE_PEOPLE_SORT_KEY_CATEGORY_ID', 4);
+define('CIRCLE_PEOPLE_SORT_KEY_CATEGORY_ID', 3);
+define('CIRCLE_PEOPLE_SORT_KEY_STUDENT_ID', 4);
 define('CIRCLE_PEOPLE_SORT_KEY_POSTTIME', 5);
 
 define('CIRCLE_PEOPLE_SORT_KEY_DEFAULT', CIRCLE_PEOPLE_SORT_KEY_PEOPLE_ID);
@@ -28,8 +28,8 @@ class Circle_PeopleFilterForm extends Circle_AbstractFilterForm
     public /*** string[] ***/ $mSortKeys = array(
  	   CIRCLE_PEOPLE_SORT_KEY_PEOPLE_ID => 'people_id',
  	   CIRCLE_PEOPLE_SORT_KEY_TITLE => 'title',
- 	   CIRCLE_PEOPLE_SORT_KEY_UID => 'uid',
  	   CIRCLE_PEOPLE_SORT_KEY_CATEGORY_ID => 'category_id',
+ 	   CIRCLE_PEOPLE_SORT_KEY_STUDENT_ID => 'student_id',
  	   CIRCLE_PEOPLE_SORT_KEY_POSTTIME => 'posttime',
 
     );
@@ -67,13 +67,13 @@ class Circle_PeopleFilterForm extends Circle_AbstractFilterForm
 			$this->mNavi->addExtra('title', $value);
 			$this->_mCriteria->add(new Criteria('title', $value));
 		}
-		if (($value = $root->mContext->mRequest->getRequest('uid')) !== null) {
-			$this->mNavi->addExtra('uid', $value);
-			$this->_mCriteria->add(new Criteria('uid', $value));
-		}
 		if (($value = $root->mContext->mRequest->getRequest('category_id')) !== null) {
 			$this->mNavi->addExtra('category_id', $value);
 			$this->_mCriteria->add(new Criteria('category_id', $value));
+		}
+		if (($value = $root->mContext->mRequest->getRequest('student_id')) !== null) {
+			$this->mNavi->addExtra('student_id', $value);
+			$this->_mCriteria->add(new Criteria('student_id', $value));
 		}
 		if (($value = $root->mContext->mRequest->getRequest('posttime')) !== null) {
 			$this->mNavi->addExtra('posttime', $value);
