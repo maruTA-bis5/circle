@@ -104,8 +104,6 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 		$render->setTemplateName($this->mAsset->mDirname . '_people_list.html');
 		$render->setAttribute('objects', $this->mObjects);
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
-        $catac = $this->mUtils->getAccessControllerModule('lecat');
-        $render->setAttribute('categories', $catac);
 		$render->setAttribute('dataname', self::DATANAME);
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 		$render->setAttribute('accessController', $this->mAccessController['main']);
