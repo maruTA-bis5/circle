@@ -77,7 +77,7 @@ class Circle_PeopleObject extends Legacy_AbstractObject
 				);
 			}
 			$this->mTag = $tagArr;
-			$this->_mIsTagLoaded = true;
+			$this->_mIsTagLoaded = true;adump($this);
 		}
 	}
 		
