@@ -72,7 +72,7 @@ class Circle_PeopleObject extends Legacy_AbstractObject
 					new XCube_Ref($tagArr),
 					$tagDirname,
 					$this->getDirname(),
-					'page',
+					'people',
 					$this->get('people_id')
 				);
 			}
