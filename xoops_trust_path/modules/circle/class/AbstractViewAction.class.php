@@ -71,8 +71,6 @@ abstract class Circle_AbstractViewAction extends Circle_AbstractAction
 		$this->mObjectHandler =& $this->_getHandler();
 	
 		$this->mObject =& $this->mObjectHandler->get($id);
-
-        $this->mObject->loadTag();
 	}
 
 	/**
