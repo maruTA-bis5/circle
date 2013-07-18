@@ -16,7 +16,7 @@
 
     <!-- tag -->
     <{if count($object->mTag)>0}>
-    <dt class="tagList"><{$smarty.const._TAG}>: </dt>
+    <dt class="tagList"><{$smarty.const._TAG}></dt>
     <dd class="tagList">
     <{foreach item=tag from=$object->mTag}>
      <{assign var=tagurl value=$tag|xoops_escape:url}>
