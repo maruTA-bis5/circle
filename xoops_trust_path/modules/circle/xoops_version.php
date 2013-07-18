@@ -77,6 +77,7 @@ $modversion['templates'] = array(
         array('file' => '{dirname}_people_list.html','description' => _MI_CIRCLE_TPL_PEOPLE_LIST),
         array('file' => '{dirname}_people_view.html','description' => _MI_CIRCLE_TPL_PEOPLE_VIEW),
         array('file' => '{dirname}_people_inc_view.html','description' => _MI_CIRCLE_TPL_PEOPLE_VIEW),
+        array('file' => '{dirname}_people_ajaxStdId.js','description' => _MI_CIRCLE_TPL_PEOPLE_AJAX),
 
 ##[/cubson:templates]
 );
