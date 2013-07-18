@@ -8,7 +8,7 @@
   <dt><{$smarty.const._MD_CIRCLE_LANG_TITLE}></dt>
   <dd><{$object->getShow('title')}></dd>
   <dt><{$smarty.const._MD_CIRCLE_LANG_CATEGORY_ID}></dt>
-  <dd><{$mainTitle|xoops_escape}></dd>
+  <dd><{$accessController->getTitle($object->getVar('category_id'))|xoops_escape}></dd>
   <dt><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}></dt>
   <dd><{$object->getShow('student_id')}></dd>
   <dt><{$smarty.const._MD_CIRCLE_LANG_POSTTIME}></dt>

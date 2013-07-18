@@ -47,6 +47,10 @@
           <td><{$obj->getShow('title')}></td>
           <td><{assign var=catId value=$obj->getShow('category_id')}><{$mainTitleList.$catId|xoops_escape}></td>
           <td><{$obj->getShow('student_id')}></td>
+          <td><{assign var=catid value=$obj->getVar('category_id')}>
+              <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname query="category_id=`$catid`"}>">
+              <{$accessController->getTitle($catid)|xoops_escape}>
+          </a></td>
           <td><{$obj->getShow('posttime')|xoops_formattimestamp:m}></td>
 
           <td>
