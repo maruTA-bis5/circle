@@ -51,6 +51,14 @@
               <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname query="category_id=`$catid`"}>">
               <{$accessController->getTitle($catid)|xoops_escape}>
           </a></td>
+          <td><{$obj->loadTag()}>
+            <{if count($obj->mTag)>0}>
+            <{foreach item=tag from=$obj->mTag}>
+              <{assign var=tagurl value=$tag|xoops_escape:url}>
+              <span><a href="<{xoops_cooluri dirname=$dirname dataname=$dataname query="tag=`$tag`"}>"><{$tag|xoops_escape}></a></span> 
+            <{/foreach}>
+            <{/if}>
+          </td>
           <td><{$obj->getShow('posttime')|xoops_formattimestamp:m}></td>
 
           <td>
