@@ -1,6 +1,9 @@
 <section class="circle">
 <header>
   <h1><{$smarty.const._MD_CIRCLE_LANG_PEOPLE}><{$smarty.const._LIST}></h1>
+  <{if $smarty.request.category_id}>
+    <h2>団体名：<{$accessController->getTitle($smarty.request.category_id)|xoops_escape}></h2>
+  <{/if}>
 </header>
 <nav class="nav nav-pills">
 <ul>

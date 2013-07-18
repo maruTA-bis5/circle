@@ -18,6 +18,23 @@ require_once CIRCLE_TRUST_PATH . '/class/AbstractListAction.class.php';
 class Circle_PeopleListAction extends Circle_AbstractListAction
 {
 	const DATANAME = 'people';
+	protected $mCriteria = null;
+
+	protected function getCriteria()
+	{
+		if (isset($this->mFilter) && $this->mFilter != null) {
+			return $this->mCriteria =& $this->mFilter->getCriteria();
+		}
+		return false;
+	}
+
+	protected function addCriteria(Criteria $criteria)
+	{
+		if (!isset($this->mCriteria) || !($this->mCriteria instanceof CriteriaCompo)) {
+			$this->mCriteria = new CriteriaCompo();
+		}
+		$this->mCriteria->add($criteria);
+	}
 
 
 	/**
@@ -57,24 +74,38 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 	{
 		$this->mFilter =& $this->_getFilterForm();
 		$this->mFilter->fetch();
-	
+
 		$handler =& $this->_getHandler();
-		$criteria=$this->mFilter->getCriteria();
+		$criteria =& $this->getCriteria();
 	
 		$tree = array();
 		if(! $this->_getCatId()){
-			$catCriteria = new CriteriaCompo();
 		
 			//get permitted categories to show
 			$idList = $this->mAccessController['main']->getPermittedIdList(Circle_AbstractAccessController::VIEW, $this->_getCatId());
 			if(count($idList)>0 && $this->mAccessController['main']->getAccessControllerType()!='none'){
-				$catCriteria->add(new Criteria('category_id', $idList, 'IN'));
-				$criteria->add($catCriteria);
+				$criteria->add(new Criteria('category_id', $idList, 'IN'));
 			}
+		}
+		if ($sid = $this->_getStudentId()) {
+			$newCriteria = new CriteriaCompo();
+			foreach ($criteria->criteriaElements as $cri) {
+				if ($cri->column == 'student_id') {
+					$newCriteria->add(new Criteria('student_id', $sid, 'like'));
+				} else {
+					$newCriteria->add($cri);
+				}
+			}
+			$criteria =& $newCriteria;
 		}
 		$this->mObjects = $handler->getObjects($criteria);
 	
 		return CIRCLE_FRAME_VIEW_INDEX;
+	}
+
+	protected function _getStudentId()
+	{
+		return '%'.$this->mRoot->mContext->mRequest->getRequest('student_id').'%';
 	}
 
 	/**
