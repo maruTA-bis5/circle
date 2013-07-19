@@ -67,6 +67,7 @@ define('_MI_CIRCLE_TPL_PEOPLE_LIST', 'People List');
 define('_MI_CIRCLE_TPL_PEOPLE_EDIT', 'People Edit');
 define('_MI_CIRCLE_TPL_PEOPLE_DELETE', 'People Delete');
 define('_MI_CIRCLE_TPL_PEOPLE_VIEW', 'People View');
+define('_MI_CIRCLE_TPL_PEOPLE_AJAX', 'People Ajax Filter');
 
 
 ?>
