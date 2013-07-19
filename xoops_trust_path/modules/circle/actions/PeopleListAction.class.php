@@ -19,6 +19,7 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 {
 	const DATANAME = 'people';
 	protected $mCriteria = null;
+	protected $mActionForm = null;
 
 	protected function getCriteria()
 	{
@@ -78,6 +79,7 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 		$handler =& $this->_getHandler();
 		$criteria =& $this->getCriteria();
 	
+        $criteria = new CriteriaCompo();
 		$tree = array();
 		if(! $this->_getCatId()){
 		
@@ -86,18 +88,14 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 			if(count($idList)>0 && $this->mAccessController['main']->getAccessControllerType()!='none'){
 				$criteria->add(new Criteria('category_id', $idList, 'IN'));
 			}
+		} else {
+			$criteria->add(new Criteria('category_id', $this->_getCatId()));
 		}
 		if ($sid = $this->_getStudentId()) {
-			$newCriteria = new CriteriaCompo();
-			foreach ($criteria->criteriaElements as $cri) {
-				if ($cri->column == 'student_id') {
-					$newCriteria->add(new Criteria('student_id', $sid, 'like'));
-				} else {
-					$newCriteria->add($cri);
-				}
-			}
-			$criteria =& $newCriteria;
+			$criteria->add(new Criteria('student_id', strtoupper($sid), 'like'));
 		}
+        $criteria->add(new Criteria('title', $this->_getName(), 'like'));
+		
 		$this->mObjects = $handler->getObjects($criteria);
 	
 		return CIRCLE_FRAME_VIEW_INDEX;
@@ -106,6 +104,16 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 	protected function _getStudentId()
 	{
 		return '%'.$this->mRoot->mContext->mRequest->getRequest('student_id').'%';
+	}
+
+	protected function _getName() 
+	{
+		return '%'.$this->mRoot->mContext->mRequest->getRequest('name').'%';
+	}
+
+	protected function _setupActionForm()
+	{
+		$this->mActionForm =& $this->mAsset->getObject('form', self::DATANAME, false, 'edit');
 	}
 
 	/**
@@ -119,6 +127,7 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 	{
 		parent::prepare();
 		$this->_setupAccessController('people');
+		$this->_setupActionForm();
 
 		return true;
 	}
@@ -133,6 +142,7 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 	public function executeViewIndex(/*** XCube_RenderTarget ***/ &$render)
 	{
 		$render->setTemplateName($this->mAsset->mDirname . '_people_list.html');
+		$render->setAttribute('actionForm', $this->mActionForm);
 		$render->setAttribute('objects', $this->mObjects);
 		$render->setAttribute('dirname', $this->mAsset->mDirname);
 		$render->setAttribute('dataname', self::DATANAME);

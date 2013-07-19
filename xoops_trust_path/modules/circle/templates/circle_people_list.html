@@ -1,15 +1,35 @@
 <section class="circle">
 <header>
   <h1><{$smarty.const._MD_CIRCLE_LANG_PEOPLE}><{$smarty.const._LIST}></h1>
-  <{if $smarty.request.category_id}>
-    <h2>団体名：<{$accessController->getTitle($smarty.request.category_id)|xoops_escape}></h2>
-  <{/if}>
 </header>
 <nav class="nav nav-pills">
 <ul>
   <li><a href="<{xoops_cooluri dirname=$dirname dataname=$dataname action=edit}>"><{$smarty.const._MD_CIRCLE_LANG_ADD_A_NEW_PEOPLE}></a></li>
 </ul>
 </nav>
+
+<div class="control-group">
+  <label for="q_student_id"><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}></label>
+  <div class="controls">
+    <input type="text" name="q_student_id" id="q_student_id">
+    <p><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID_DESC}></p>
+  </div>
+</div>
+<div class="control-group">
+  <label for="q_name"><{$smarty.const._MD_CIRCLE_LANG_TITLE}></label>
+  <div class="controls">
+    <input type="text" name="q_name" id="q_name">
+    <p><{$smarty.const._MD_CIRCLE_LANG_LIST_TITLE_DESC}></p>
+  </div>
+</div>
+<div class="control-group">
+  <label for="q_category"><{$smarty.const._MD_CIRCLE_LANG_CATEGORY_ID}></label>
+  <div class="controls">
+    <select name="q_category" id="q_category">
+      <{legacy_category_select tree=$accessController->getTree('post') selectedValue=$actionForm->get('category_id')}>
+    </select>
+  </div>
+</div>
 
 <{if count($objects) > 0}>
   <table class="table" summary="">
