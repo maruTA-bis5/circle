@@ -107,6 +107,7 @@ class Circle_PeopleListAction extends Circle_AbstractListAction
 		$render->setAttribute('dataname', self::DATANAME);
 		$render->setAttribute('pageNavi', $this->mFilter->mNavi);
 		$render->setAttribute('accessController', $this->mAccessController['main']);
+		$render->setAttribute('tag_dirname', $this->mRoot->mContext->mModuleConfig['tag_dirname']);
 	}
 }
 

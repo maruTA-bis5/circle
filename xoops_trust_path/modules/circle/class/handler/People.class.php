@@ -61,6 +61,26 @@ class Circle_PeopleObject extends Legacy_AbstractObject
 		return 0;
 	}
 
+	public function loadTag()
+	{
+		$tagDirname = Circle_Utils::getModuleConfig($this->getDirname(), 'tag_dirname');
+		if ($this->_mIsTagLoaded == false && $tagDirname) {
+			$tagArr = array();
+			if (! $this->isNew()) {
+				XCube_DelegateUtils::call(
+					'Legacy_Tag.'.$tagDirname.'.GetTags',
+					new XCube_Ref($tagArr),
+					$tagDirname,
+					$this->getDirname(),
+					'people',
+					$this->get('people_id')
+				);
+			}
+			$this->mTag = $tagArr;
+			$this->_mIsTagLoaded = true;adump($this);
+		}
+	}
+		
 }
 
 /**

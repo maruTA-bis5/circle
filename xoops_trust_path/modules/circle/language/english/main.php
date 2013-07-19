@@ -28,6 +28,7 @@ define('_MD_CIRCLE_LANG_ADD_A_NEW_PEOPLE', 'Add a new People');
 define('_MD_CIRCLE_LANG_PEOPLE_EDIT', 'People Edit');
 define('_MD_CIRCLE_LANG_PEOPLE_DELETE', 'People Delete');
 define('_MD_CIRCLE_LANG_PEOPLE', 'People');
-
+define('_MD_CIRCLE_LANG_TAG_SELECT', 'toggle on click tag name. If you want to create new, input directly. You can set many tags separated by space.');
+define('_MD_CIRCLE_LANG_TITLE_DESC', 'This field will automatic input you put the Student id and press TAB key.');
 
 ?>

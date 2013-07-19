@@ -13,9 +13,9 @@
     <thead>
       <tr>
         <th>
-          <{$smarty.const._MD_CIRCLE_LANG_PEOPLE_ID}>
-          <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_PEOPLE_ID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-          <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_PEOPLE_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+          <{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}>
+          <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_STUDENT_ID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
+          <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_STUDENT_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
         </th>
         <th>
           <{$smarty.const._MD_CIRCLE_LANG_TITLE}>
@@ -28,9 +28,7 @@
           <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_CATEGORY_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
         </th>
         <th>
-          <{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}>
-          <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_STUDENT_ID}>"><img src="images/up.gif" alt="<{$smarty.const._ASCENDING}>" title="<{$smarty.const._ASCENDING}>" /></a>
-          <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.CIRCLE_PEOPLE_SORT_KEY_STUDENT_ID}>"><img src="images/down.gif" alt="<{$smarty.const._DESCENDING}>" title="<{$smarty.const._DESCENDING}>" /></a>
+          <{$smarty.const._TAG}>
         </th>
         <th>
           <{$smarty.const._MD_CIRCLE_LANG_POSTTIME}>
@@ -43,10 +41,20 @@
     <tbody>
       <{foreach item=obj from=$objects}>
         <tr class="<{cycle values='odd,even'}>">
-          <td><{$obj->getShow('people_id')}></td>
-          <td><{$obj->getShow('title')}></td>
-          <td><{assign var=catId value=$obj->getShow('category_id')}><{$mainTitleList.$catId|xoops_escape}></td>
           <td><{$obj->getShow('student_id')}></td>
+          <td><{$obj->getShow('title')}></td>
+          <td><{assign var=catid value=$obj->getVar('category_id')}>
+              <a href="<{xoops_cooluri dirname=$dirname dataname=$dataname query="category_id=`$catid`"}>">
+              <{$accessController->getTitle($catid)|xoops_escape}>
+          </a></td>
+          <td><{$obj->loadTag()}>
+            <{if count($obj->mTag)>0}>
+            <{foreach item=tag from=$obj->mTag}>
+              <{assign var=tagurl value=$tag|xoops_escape:url}>
+              <span><a href="<{xoops_cooluri dirname=$dirname dataname=$dataname query="tag=`$tag`"}>"><{$tag|xoops_escape}></a></span> 
+            <{/foreach}>
+            <{/if}>
+          </td>
           <td><{$obj->getShow('posttime')|xoops_formattimestamp:m}></td>
 
           <td>

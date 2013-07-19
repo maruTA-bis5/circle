@@ -28,7 +28,8 @@ define('_MD_CIRCLE_LANG_ADD_A_NEW_PEOPLE', '新しく学生を登録する');
 define('_MD_CIRCLE_LANG_PEOPLE_EDIT', '学生情報編集');
 define('_MD_CIRCLE_LANG_PEOPLE_DELETE', '学生情報削除');
 define('_MD_CIRCLE_LANG_PEOPLE', '学生情報');
-
+define('_MD_CIRCLE_LANG_TAG_SELECT', '下のタグをクリックすると自動的に挿入されます。新しいタグを作る場合は直接入力してください。複数タグは半角スペース区切りで指定します。');
+define('_MD_CIRCLE_LANG_TITLE_DESC', '学籍番号を入力しTabキーを押すと自動的に入力されます。');
 
 
 ?>

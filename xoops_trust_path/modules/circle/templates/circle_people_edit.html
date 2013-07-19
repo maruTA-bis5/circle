@@ -15,9 +15,18 @@
   <{xoops_input type=hidden name=people_id value=$actionForm->get('people_id')}>
 
   <div class="control-group">
-    <label for="title" class="control-labelrequired"><{$smarty.const._MD_CIRCLE_LANG_TITLE}></label>
-    <div class="controls"><{xoops_input type=text name=title value=$actionForm->get('title') class="span4" maxlength=255required}></div>
+    <label for="student_id" class="control-label required"><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}></label>
+    <div class="controls"><{xoops_input type=text name=student_id value=$actionForm->get('student_id') class="span4" maxlength=11required}></div>
   </div>
+
+  <div class="control-group">
+    <label for="title" class="control-label required"><{$smarty.const._MD_CIRCLE_LANG_TITLE}></label>
+    <div class="controls">
+      <{xoops_input type=text name=title value=$actionForm->get('title') class="span4" maxlength=255required}>
+      <!--特殊文字は表示されない旨--><{$smarty.const._MD_CIRCLE_LANG_TITLE_DESC}>
+    </div>
+  </div>
+
   <{if $accessController->getAccessControllerType()!='none'}>
   <div class="control-group">
     <label for="category_id" class="control-label required"><{$smarty.const._MD_CIRCLE_LANG_CATEGORY_ID}></label>
@@ -29,19 +38,17 @@
   <{xoops_input type="hidden" name="category_id" value="0"}>
   <{/if}>
 
-
+  <{if $tag_dirname}>
   <div class="control-group">
-    <label for="student_id" class="control-labelrequired"><{$smarty.const._MD_CIRCLE_LANG_STUDENT_ID}></label>
-    <div class="controls"><{xoops_input type=text name=student_id value=$actionForm->get('student_id') class="span4" maxlength=11required}></div>
-  </div>
-
-    <{if $tag_dirname}>
-    <dt><{$smarty.const._TAG}></dt>
-    <dd>
+    <label for="tags" class="control-label"><{$smarty.const._TAG}></label>
+    <div class="controls">
       <{xoops_input type=text name=tags value=$actionForm->get('tags')}>
+      <p><{$smarty.const._MD_CIRCLE_lANG_TAG_SELET}></p>
       <{legacy_tag_select tDirname=$tag_dirname tags=$object->mTag}>
-    </dd>
-    <{/if}>
+    </div>
+  </div>
+  <{/if}>
+
   <div class="form-actions">
     <{xoops_token form=$actionForm}>
     <button type="submit" class="btn btn-primary" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
@@ -50,3 +57,6 @@
   </fieldset>
 </form>
 </div>
+<script>
+<{include file="db:`$dirname`_people_ajaxStdId.js"}>
+</script>
