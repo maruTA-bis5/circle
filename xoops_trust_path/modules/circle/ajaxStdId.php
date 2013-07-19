@@ -13,11 +13,11 @@ if (!is_file($cache_path) || $force_fetch) {
 	$depList = array('s', 'e', 'm', 'c', 'j');
 	$suffix = '.htm';
 	foreach ($depList as $dep) {
-		$html = mb_convert_encoding(file_get_contents($prefix.$dep.$suffix), 'UTF-8', 'SJIS');
+		$html = mb_convert_encoding(file_get_contents($prefix.$dep.$suffix), 'UTF-8', 'SJIS-WIN');
 		$years = array();
 		preg_match_all('/href="(inside\/.*\.htm)"/', $html, $years, PREG_PATTERN_ORDER);
 		foreach ($years[1] as $year) {
-			$html = mb_convert_encoding(file_get_contents($prefix.$year), 'UTF-8', 'SJIS');
+			$html = mb_convert_encoding(file_get_contents($prefix.$year), 'UTF-8', 'SJIS-WIN');
 			$students = array();
 			$students = explode('<br>', $html);
             foreach ($students as $student) {
