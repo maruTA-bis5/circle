@@ -21,7 +21,7 @@ require_once CIRCLE_TRUST_PATH . '/class/CircleUtils.class.php';
 // Define a basic manifesto.
 //
 $modversion['name'] = $myDirName;
-$modversion['version'] = 0.01;
+$modversion['version'] = 1.00;
 $modversion['description'] = _MI_CIRCLE_DESC_CIRCLE;
 $modversion['author'] = _MI_CIRCLE_LANG_AUTHOR;
 $modversion['credits'] = _MI_CIRCLE_LANG_CREDITS;
