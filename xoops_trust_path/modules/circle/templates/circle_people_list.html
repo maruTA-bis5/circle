@@ -53,7 +53,7 @@
         <th><{$smarty.const._MD_CIRCLE_LANG_CONTROL}></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="search_result_tbody">
       <{foreach item=obj from=$objects}>
         <tr class="<{cycle values='odd,even'}>">
           <td><{$obj->getShow('student_id')}></td>
@@ -84,3 +84,27 @@
   <nav class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
 <{/if}>
 </section>
+
+<script>
+jQuery(document).ready(function() {
+	jQuery("#q_student_id").change(processQuery);
+	jQuery("#q_name").change(processQuery);
+});
+
+function processQuery() {
+	var sid = jQuery("#q_student_id").val().toUpperCase();
+	var name = jQuery("#q_name").val();
+	jQuery.ajax({
+		"async" : true,
+		"cache" : false,
+		"data"  : {"student_id":sid, "name":name},
+		"dataType" : "text",
+		"url" : "<{$xoops_url}>/modules/<{$xoops_dirname}>/includes/ajaxSearchTable.php",
+		"success" : function(html) {
+			jQuery("#search_result_tbody").html("");
+			jQuery("#search_result_tbody").append(html);
+		}
+	});
+}
+</script>
+
