@@ -28,7 +28,7 @@ foreach($objects as $obj) : $obj->loadTag();?>
 <tr class="<?php echo $odd_even++%2==0?"even":"odd"?>">
 <td><?php echo $obj->getVar('student_id'); ?></td>
 <td><?php echo $obj->getVar('title'); ?></td>
-<td><a href="<?php echo XOOPS_URL?>/modules/<?php echo $mod->mXoopsModule->get('dirname');?>/?action=PeopleList&category_id=<?php echo intval($accessController->getTitle($obj->getVar('category_id')))?>"><?php echo $accessController->getTitle($obj->getVar('category_id'));?></a></td>
+<td><a href="<?php echo XOOPS_URL?>/modules/<?php echo $mod->mXoopsModule->get('dirname');?>/?action=PeopleList&category_id=<?php echo intval($obj->getVar('category_id'))?>"><?php echo $accessController->getTitle($obj->getVar('category_id'));?></a></td>
 <td><?php if (count($obj->mTag)>0):?>
 <?php foreach ($obj->mTag as $tag):?>
 <span><a href="<?php echo XOOPS_URL;?>/modules/<?php echo $mod->mXoopsModule->get('dirname');?>/?action=PersonList&tag=<?php echo $tag;?>"><?php echo htmlspecialchars($tag, ENT_QUOTES);?></a></span> 
