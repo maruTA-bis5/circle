@@ -65,3 +65,8 @@ ul.hmenu {
 	width:400px;
 }
 
+/* list filter */
+
+.circle .control-group.cListFilter {
+	display: inline-block;
+}
